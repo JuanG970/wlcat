@@ -1,0 +1,25 @@
+Notebook[{
+Cell["Complex Notebook Example", "Title"],
+
+Cell["This notebook tests various edge cases and complex structures.", "Text"],
+
+Cell["Nested Structures", "Section"],
+
+Cell[BoxData[RowBox[{"f", "[", RowBox[{"x", ",", "y"}], "]"}]], "Input"],
+
+Cell[BoxData[RowBox[{"x", "+", "y"}]], "Output"],
+
+Cell["String with Special Characters", "Section"],
+
+Cell["This is a text cell with \"quotes\" and backslashes \\.", "Text"],
+
+Cell[BoxData["StringLength[\"Hello\\nWorld\"]"], "Input"],
+
+Cell[BoxData["11"], "Output"],
+
+Cell["Multiple Arguments", "Section"],
+
+Cell[BoxData[RowBox[{"Map", "[", RowBox[{"f", ",", RowBox[{"{", RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[RowBox[{"{", RowBox[{"f", "[", "1", "]", ",", "f", "[", "2", "]", ",", "f", "[", "3", "]"}], "}"}]], "Output"]
+}]
