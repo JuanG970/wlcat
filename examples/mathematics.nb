@@ -1,0 +1,57 @@
+Notebook[{
+Cell["Mathematical Computations", "Title"],
+
+Cell["Basic Arithmetic", "Section"],
+
+Cell["Let's start with some basic arithmetic operations.", "Text"],
+
+Cell[BoxData["1 + 2 + 3 + 4 + 5"], "Input"],
+
+Cell[BoxData["15"], "Output"],
+
+Cell[BoxData["10 * 20"], "Input"],
+
+Cell[BoxData["200"], "Output"],
+
+Cell["Symbolic Mathematics", "Section"],
+
+Cell["Wolfram Language excels at symbolic computation.", "Text"],
+
+Cell[BoxData["D[x^2 + 2*x + 1, x]"], "Input"],
+
+Cell[BoxData["2 + 2*x"], "Output"],
+
+Cell[BoxData["Integrate[x^2, x]"], "Input"],
+
+Cell[BoxData["x^3/3"], "Output"],
+
+Cell["Solving Equations", "Section"],
+
+Cell["Solve a quadratic equation:", "Text"],
+
+Cell[BoxData["Solve[x^2 - 5*x + 6 == 0, x]"], "Input"],
+
+Cell[BoxData["{{x -> 2}, {x -> 3}}"], "Output"],
+
+Cell["List Operations", "Section"],
+
+Cell["Working with lists and data:", "Text"],
+
+Cell[BoxData["Table[i^2, {i, 1, 10}]"], "Input"],
+
+Cell[BoxData["{1, 4, 9, 16, 25, 36, 49, 64, 81, 100}"], "Output"],
+
+Cell[BoxData["Total[{1, 2, 3, 4, 5}]"], "Input"],
+
+Cell[BoxData["15"], "Output"],
+
+Cell["String Operations", "Subsection"],
+
+Cell[BoxData["StringJoin[\"Hello\", \" \", \"World\"]"], "Input"],
+
+Cell[BoxData["\"Hello World\""], "Output"],
+
+Cell["Conclusion", "Section"],
+
+Cell["This notebook demonstrates various Wolfram Language capabilities.", "Text"]
+}]

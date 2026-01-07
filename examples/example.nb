@@ -1,0 +1,35 @@
+Notebook[{
+Cell["Example Wolfram Language Notebook", "Title"],
+
+Cell["This is a simple example to demonstrate wlcat.", "Text"],
+
+Cell[BoxData["2 + 2"], "Input"],
+
+Cell[BoxData["4"], "Output"],
+
+Cell["Working with Lists", "Section"],
+
+Cell["Here's how to create a list in Wolfram Language:", "Text"],
+
+Cell[BoxData["list = {1, 2, 3, 4, 5}"], "Input"],
+
+Cell[BoxData["{1, 2, 3, 4, 5}"], "Output"],
+
+Cell["Mathematical Functions", "Section"],
+
+Cell["Calculate the factorial of 5:", "Text"],
+
+Cell[BoxData["Factorial[5]"], "Input"],
+
+Cell[BoxData["120"], "Output"],
+
+Cell["Plotting", "Section"],
+
+Cell["Create a simple plot:", "Text"],
+
+Cell[BoxData["Plot[Sin[x], {x, 0, 2*Pi}]"], "Input"],
+
+Cell["Conclusion", "Section"],
+
+Cell["This demonstrates basic Wolfram Language notebook structure.", "Text"]
+}]
