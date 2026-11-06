@@ -50,54 +50,83 @@ class WLcat:
         self.cells = self._extract_cells(cells_section)
     
     def _extract_cells(self, content):
-        """Extract Cell structures from notebook content"""
+        """Extract Cell structures from notebook content.
+
+        Cells wrapped in Cell[CellGroupData[{...}, state]] are flattened: the
+        group is descended into and its children are emitted in order. The
+        group itself carries no cell type, so it contributes no cell.
+        """
         cells = []
         idx = 0
         while idx < len(content):
-            # Find next Cell[
             cell_start = content.find('Cell[', idx)
             if cell_start == -1:
                 break
-            
-            # Find matching closing bracket
-            bracket_count = 0
-            in_string = False
-            escape_next = False
-            cell_end = cell_start + 5  # Start after "Cell["
-            
-            for i in range(cell_start + 5, len(content)):
-                char = content[i]
-                
-                if escape_next:
-                    escape_next = False
-                    continue
-                
-                if char == '\\':
-                    escape_next = True
-                    continue
-                
-                if char == '"':
-                    in_string = not in_string
-                    continue
-                
-                if not in_string:
-                    if char == '[':
-                        bracket_count += 1
-                    elif char == ']':
-                        if bracket_count == 0:
-                            cell_end = i
-                            break
-                        bracket_count -= 1
-            
-            # Extract the cell content
-            if cell_end > cell_start:
-                cell_content = content[cell_start:cell_end + 1]
-                cells.append(self._parse_cell(cell_content))
-                idx = cell_end + 1
-            else:
+
+            cell_end = self._find_matching(content, cell_start + 4, '[', ']')
+            if cell_end is None:
                 idx = cell_start + 1
-        
+                continue
+
+            cell_str = content[cell_start:cell_end + 1]
+            group_cells = self._extract_group(cell_str)
+            if group_cells is None:
+                cells.append(self._parse_cell(cell_str))
+            else:
+                cells.extend(group_cells)
+            idx = cell_end + 1
+
         return cells
+
+    def _extract_group(self, cell_str):
+        """Flatten Cell[CellGroupData[{...}, state]] into its child cells.
+
+        Returns None when cell_str is not a cell group (or its cell list
+        cannot be located), so the caller parses it as a regular cell.
+        """
+        inner = cell_str[5:-1].strip()
+        if not inner.startswith('CellGroupData['):
+            return None
+
+        open_brace = inner.find('{')
+        if open_brace == -1:
+            return None
+        close_brace = self._find_matching(inner, open_brace, '{', '}')
+        if close_brace is None:
+            return None
+
+        return self._extract_cells(inner[open_brace + 1:close_brace])
+
+    @staticmethod
+    def _find_matching(text, start, opener, closer):
+        """Return the index of the closer matching text[start], skipping strings."""
+        depth = 0
+        in_string = False
+        escape_next = False
+
+        for i in range(start, len(text)):
+            char = text[i]
+
+            if escape_next:
+                escape_next = False
+                continue
+            if char == '\\':
+                escape_next = True
+                continue
+            if char == '"':
+                in_string = not in_string
+                continue
+            if in_string:
+                continue
+
+            if char == opener:
+                depth += 1
+            elif char == closer:
+                depth -= 1
+                if depth == 0:
+                    return i
+
+        return None
     
     def _parse_cell(self, cell_str):
         """Parse a single Cell[...] structure"""
