@@ -1,0 +1,1 @@
+Notebook[{Cell[CellGroupData[{Cell["Outer", "Section"], Cell[CellGroupData[{Cell["Inner", "Subsection"], Cell["x = 1", "Input"]}, Open]], Cell["after", "Text"]}, Open]], Cell["tail", "Text"]}]

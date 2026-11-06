@@ -99,6 +99,14 @@ Calculate 2 + 2
 - **Section/Subsection/Subsubsection**: Section headers
 - And other Wolfram notebook cell types
 
+## Grouped Cells
+
+Wolfram notebooks wrap a section header and its children in
+`Cell[CellGroupData[{...}, Open]]`. `wlcat` flattens these groups: the group
+itself is not printed, and each child cell is emitted in notebook order with its
+own type and content. Nested groups are flattened recursively. A notebook
+without groups is rendered exactly as before.
+
 ## How It Works
 
 `wlcat` parses the Wolfram Language expression structure of `.nb` files:
