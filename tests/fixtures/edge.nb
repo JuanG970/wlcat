@@ -1,0 +1,7 @@
+Notebook[{
+Cell["Edge Cases", "Title"],
+Cell["Text with a comma, a bracket ] and a quote \" kept verbatim.", "Text"],
+Cell["Details", "Section"],
+Cell[BoxData["x = 1"], "Code"],
+Cell[BoxData["1"], "Output"]
+}]

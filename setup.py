@@ -18,6 +18,7 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    extras_require={'test': ['pytest>=7']},
     entry_points={
         'console_scripts': [
             'wlcat = wlcat:app_main',

@@ -1,0 +1,6 @@
+Notebook[{
+Cell["Example Notebook", "Title"],
+Cell["Calculate 2 + 2", "Text"],
+Cell[BoxData["2 + 2"], "Input"],
+Cell[BoxData["4"], "Output"]
+}]
