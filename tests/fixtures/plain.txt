@@ -1,0 +1,2 @@
+This file is plain text, not a Wolfram Language notebook.
+It has no Notebook[...] expression at all.
